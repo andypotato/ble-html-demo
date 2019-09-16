@@ -1,0 +1,18 @@
+{
+  "name": "ble-html-demo",
+  "version": "0.0.1",
+  "description": "Demo on integrating the BLE controller with HTML pages",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Andreas Schallwig",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "reset-css": "^4.0.1",
+    "three": "^0.106.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
