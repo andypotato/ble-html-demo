@@ -6,12 +6,146 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
   <link type="text/css" rel="stylesheet" href="/reset-css/reset.css">
   <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #container {
+      position: absolute;
+      border: 2px solid #000;
+      border-radius: 10px;
+      width: 640px;
+      height: 280px;
+      position: absolute;
+      overflow: hidden;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
+    .btn {
+      position: absolute;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .btn-dpad {
+      width: 48px;
+      height: 48px;
+      background-color: #000;
+      line-height: 48px;
+    }
+
+    .btn-ss {
+      width: 120px;
+      height: 36px;
+      background-color: #00f;
+      line-height: 36px;
+    }
+
+    .btn-ab {
+      width: 48px;
+      height: 48px;
+      background-color: #000;
+      border-radius: 24px;
+      line-height: 48px;
+    }
+
+    .btn-pressed {
+      background-color: #f00;
+    }
+
+    #dpad-up { left: 100px; top: 70px; }
+    #dpad-left { left: 60px; top: 130px; }
+    #dpad-right { left: 140px; top: 130px; }
+    #dpad-down { left: 100px; top: 188px; }
+
+    #btn-start { left: 260px; top: 110px; }
+    #btn-select { left: 260px; top: 160px; }
+
+    #btn-a { right: 60px; top: 130px; }
+    #btn-b { right: 140px; top: 130px; }
+
+    #axis-container {
+      width: 100%;
+      height: 30px;
+      background-color: #ccc;
+    }
+
+    .axis {
+      display: inline-block;
+      width: 150px;
+      padding-left: 24px;
+      line-height: 30px;
+    }
   </style>
 </head>
 
 <body>
 
+  <div id="container">
+
+    <div id="dpad-up" class="btn btn-dpad">U</div>
+    <div id="dpad-down" class="btn btn-dpad">D</div>
+    <div id="dpad-left" class="btn btn-dpad">L</div>
+    <div id="dpad-right" class="btn btn-dpad">R</div>
+
+    <div id="btn-start" class="btn btn-ss">Start</div>
+    <div id="btn-select" class="btn btn-ss">Select</div>
+
+    <div id="btn-a" class="btn btn-ab">A</div>
+    <div id="btn-b" class="btn btn-ab">B</div>
+
+    <div id="axis-container">
+      <span class="axis">X: <span id="x-val">0</span></span>
+      <span class="axis">Y: <span id="y-val">0</span></span>
+      <span class="axis">Z: <span id="z-val">0</span></span>
+    </div>
+  </div>
+
+  <script type="module">
+
+    import config from '/config.js';
+
+    // create WebSocket client
+    let socket = new WebSocket(config.websocket.server);
+    socket.onmessage = function(event) {
+
+      let data = JSON.parse(event.data);
+
+      // toggle button status
+      togglePressed('dpad-up', data.dpad.up);
+      togglePressed('dpad-down', data.dpad.down);
+      togglePressed('dpad-left', data.dpad.left);
+      togglePressed('dpad-right', data.dpad.right);
+      togglePressed('btn-start', data.buttons.start);
+      togglePressed('btn-select', data.buttons.select);
+      togglePressed('btn-a', data.buttons.btn_a);
+      togglePressed('btn-b', data.buttons.btn_b);
+
+      // update the axis values
+      setAxisVal('x-val', data.axis.x);
+      setAxisVal('y-val', data.axis.y);
+      setAxisVal('z-val', data.axis.z);
+    };
+
+    socket.onerror = function(error) {
+      console.error(error.message);
+    };
+
+    function togglePressed(el, val) {
+      if(val) {
+        document.getElementById(el).classList.add('btn-pressed');
+      } else {
+        document.getElementById(el).classList.remove('btn-pressed');
+      }
+    }
+
+    function setAxisVal(el, val) {
+      document.getElementById(el).innerText = val;
+    }
+
+  </script>
 
 </body>
 
