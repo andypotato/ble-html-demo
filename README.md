@@ -2,13 +2,13 @@
 
 A collection of examples which show how to use a Bluetooth controller with HTML5 applications. You need both the [Bluetooth controller](https://github.com/andypotato/ble-controller-demo) and [Bluetooth receiver](https://github.com/andypotato/ble-receiver-demo) to control these examples.
 
-This project is part of a [tutorial on using Bluetooth Controllers with HTML5 / JavaScript applications](https://medium.com/@andreas.schallwig  "tutorial on using Bluetooth Controllers with HTML5 / JavaScript applications").
+This project is part of a [tutorial on using Bluetooth Controllers with HTML5 / JavaScript applications](https://medium.com/@andreas.schallwig/your-phone-as-bluetooth-controller-for-web-applications-81acfe53dd64  "tutorial on using Bluetooth Controllers with HTML5 / JavaScript applications").
 
 ## Usage
 
  - Download or clone this repository
  - Install dependencies with `npm i`
- - Open `public/config.js` and set the websocket URL to your [Bluetooth receiver](https://github.com/andypotato/ble-receiver-demo)
+ - Edit `public/config.js` and set the WebSocket URL to your [Bluetooth receiver](https://github.com/andypotato/ble-receiver-demo)
  - Run the server with `npm run start`
 
 You can now view the examples in your browser by opening `http://localhost:8080`.
