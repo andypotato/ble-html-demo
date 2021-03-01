@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "reset-css": "^4.0.1",
-    "three": "^0.106.2"
+    "three": "^0.125.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
