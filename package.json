@@ -8,7 +8,7 @@
   "author": "Andreas Schallwig",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "reset-css": "^4.0.1",
     "three": "^0.106.2"
   },
